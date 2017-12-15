@@ -14,11 +14,13 @@
 #import "AbountVC.h"
 #import "TouchIDViewController.h"
 #import "ZhiWenVC.h"
+#import "ZJSelectPhotoTool.h"
 @interface SettingVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSArray * dataArray;
 @property(nonatomic,strong) UIImageView * imageview;
 @property(nonatomic,assign) CGRect  imageRect;
+@property(nonatomic,strong)UIImage * headImage;
 @end
 
 @implementation SettingVC
@@ -59,46 +61,7 @@ static const CGFloat ratio =0.6;
     _imageview.frame=CGRectMake(0, 0, ScreenWidth, ScreenWidth*ratio);
     _imageRect=_imageview.frame;
     [self.view addSubview:_imageview];
-    //头像
-    UIButton * headBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    headBtn.backgroundColor=[UIColor yellowColor];
-    
-    headBtn.sd_cornerRadius=@(40);
-    [_imageview sd_addSubviews:@[headBtn]];
-    headBtn.sd_layout
-    .centerXEqualToView(_imageview)
-    .topSpaceToView(_imageview, 10+64)
-    .widthIs(80)
-    .heightIs(80);
-    //名字
-    UILabel * namelabel =[UILabel new];
-    namelabel.text=@"Alexandra";
-    namelabel.textColor=[UIColor whiteColor];
-    if (@available(iOS 8.2, *)) {
-        namelabel.font=[UIFont systemFontOfSize:17 weight:.3];
-    } else {
-    }
-    [_imageview sd_addSubviews:@[namelabel]];
-    namelabel.sd_layout
-    .topSpaceToView(headBtn, 10)
-    .centerXEqualToView(headBtn)
-    .heightIs(20);
-    [namelabel setSingleLineAutoResizeWithMaxWidth:ScreenWidth];
-    
-    //副标题(名字下面label)
-    UILabel * namelabel2=[UILabel new];
-    namelabel2.text=@"Memvership level 3";
-    namelabel2.textColor=[[UIColor whiteColor]colorWithAlphaComponent:.5];
-    if (@available(iOS 8.2, *)) {
-        namelabel2.font=[UIFont systemFontOfSize:15 weight:.3];
-    } else {
-    }
-    [_imageview sd_addSubviews:@[namelabel2]];
-    namelabel2.sd_layout
-    .topSpaceToView(namelabel, 5)
-    .centerXEqualToView(headBtn)
-    .heightIs(20);
-    [namelabel2 setSingleLineAutoResizeWithMaxWidth:ScreenWidth];
+  
     
     
 }
@@ -107,6 +70,49 @@ static const CGFloat ratio =0.6;
     UIView * headerView =[UIView new];
     headerView.backgroundColor=[UIColor clearColor];
     headerView.frame=CGRectMake(0, 0, ScreenWidth, headHeight);
+    
+    //头像
+    UIButton * headBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+    [headBtn setBackgroundImage:[UIImage imageNamed:@"mine_head"] forState:0];
+    [headBtn addTarget:self action:@selector(headBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    headBtn.sd_cornerRadius=@(40);
+    [headerView sd_addSubviews:@[headBtn]];
+    headBtn.sd_layout
+    .centerXEqualToView(headerView)
+    .topSpaceToView(headerView, 10)
+    .widthIs(80)
+    .heightIs(80);
+    //名字
+    UILabel * namelabel =[UILabel new];
+    namelabel.text=@"Hello";
+    namelabel.textColor=[UIColor whiteColor];
+    if (@available(iOS 8.2, *)) {
+        namelabel.font=[UIFont systemFontOfSize:17 weight:.3];
+    } else {
+    }
+    [headerView sd_addSubviews:@[namelabel]];
+    namelabel.sd_layout
+    .topSpaceToView(headBtn, 10)
+    .centerXEqualToView(headBtn)
+    .heightIs(20);
+    [namelabel setSingleLineAutoResizeWithMaxWidth:ScreenWidth];
+    
+    //副标题(名字下面label)
+    UILabel * namelabel2=[UILabel new];
+    namelabel2.text=@"You can choose a head you like";
+    namelabel2.textColor=[[UIColor whiteColor]colorWithAlphaComponent:.5];
+    if (@available(iOS 8.2, *)) {
+        namelabel2.font=[UIFont systemFontOfSize:15 weight:.3];
+    } else {
+    }
+    [headerView sd_addSubviews:@[namelabel2]];
+    namelabel2.sd_layout
+    .topSpaceToView(namelabel, 5)
+    .centerXEqualToView(headBtn)
+    .heightIs(20);
+    [namelabel2 setSingleLineAutoResizeWithMaxWidth:ScreenWidth];
+    
+    
     
     return headerView;
 }
@@ -232,6 +238,24 @@ static const CGFloat ratio =0.6;
     
     
     return headerView;
+}
+
+
+#pragma mark --头像选择
+-(void)headBtnClick:(UIButton*)btn{
+    
+    [ZJSelectPhotoTool showSeletPhotoWith:self NamesArray:@[@"Select from album", @"Take pictures"] IsEditing:NO BackImageBlock:^(UIImage *image) {
+        NSLog(@">>>>%@",image);
+        _headImage=image;
+        [btn setBackgroundImage:image forState:0];
+        [self saveImage];
+    } IsIcon:NO];
+}
+
+-(void)saveImage{
+    NSString * path =NSHomeDirectory();
+    NSString * imagePath =[path stringByAppendingString:@"/Documents/pic.png"];
+    [UIImagePNGRepresentation(_headImage) writeToFile:imagePath atomically:YES];
 }
 
 - (void)didReceiveMemoryWarning {

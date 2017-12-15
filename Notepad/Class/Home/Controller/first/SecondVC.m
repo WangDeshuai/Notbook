@@ -39,25 +39,50 @@
     
     [self CreatTableView];
     
-    
-    UIButton * btn =[UIButton buttonWithType:UIButtonTypeCustom];
-    btn.sd_cornerRadius=@(30);
-     [btn addTarget:self action:@selector(rightClink) forControlEvents:UIControlEventTouchUpInside];
-    btn.backgroundColor=[UIColor redColor];
-    [self.view sd_addSubviews:@[btn]];
-    btn.sd_layout
+    UILabel * namelabel =[UILabel new];
+    namelabel.text=@"change\ncolor";
+    namelabel.backgroundColor=Main_Color;
+    namelabel.userInteractionEnabled=YES;
+    namelabel.font=[UIFont systemFontOfSize:15];
+    namelabel.textColor=[UIColor whiteColor];
+    namelabel.userInteractionEnabled=YES;
+    namelabel.textAlignment=1;
+    namelabel.numberOfLines=2;
+      namelabel.sd_cornerRadius=@(30);
+    [self.view sd_addSubviews:@[namelabel]];
+    namelabel.sd_layout
     .rightSpaceToView(self.view, 15)
     .bottomSpaceToView(self.view, 49+15)
     .widthIs(60)
     .heightIs(60);
     
+    UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
+    [namelabel addGestureRecognizer:tap];
     
+    
+    
+    
+//    UIButton * btn =[UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.sd_cornerRadius=@(30);
+//     [btn addTarget:self action:@selector(rightClink) forControlEvents:UIControlEventTouchUpInside];
+//    btn.backgroundColor=[UIColor redColor];
+//    btn.titleLabel.font=[UIFont systemFontOfSize:15];
+//
+//    [self.view sd_addSubviews:@[btn]];
+//    btn.sd_layout
+//    .rightSpaceToView(self.view, 15)
+//    .bottomSpaceToView(self.view, 49+15)
+//    .widthIs(60)
+//    .heightIs(60);
+//    namelabel.frame=btn.frame;
+//    [btn addSubview:namelabel];
+    
+   
 }
--(void)rightClink{
-    int r =(arc4random()%256);
-    int g =(arc4random()%256);
-    int b =(arc4random()%256);
-    self.navigationController.navigationBar.barTintColor=RGB(r, g, b);
+-(void)tapClick{
+ 
+    NSNotification *notification =[NSNotification notificationWithName:@"InfoNotification" object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
     [_tableView reloadData];
 }
 -(void)CreatTableView{

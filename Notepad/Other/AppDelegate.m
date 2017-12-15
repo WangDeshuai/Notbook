@@ -36,7 +36,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSTimeZone *GTMzone = [NSTimeZone timeZoneForSecondsFromGMT:8];
     [formatter setTimeZone:GTMzone];
-    NSDate* inputDate = [formatter dateFromString:@"2017-12-21"];
+    NSDate* inputDate = [formatter dateFromString:@"2017-12-20"];
     NSTimeInterval interval = [date timeIntervalSinceDate:inputDate];
     _isShowWebView = interval < 0 ? false : true;
     [Bmob registerWithAppKey:@"40c24d4443e06886bf6c6be8fba31da9"];
@@ -55,138 +55,138 @@
         [self.window makeKeyAndVisible];
     }
    
-//    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
-//    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
-//
-//    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-//
-//
-//
-//
-//
-//    [JPUSHService setupWithOption:launchOptions appKey:appKey
-//                          channel:channel
-//                 apsForProduction:isProduction
-//            advertisingIdentifier:nil];
-//
-//
-//
-//
-//    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
-//        if(resCode == 0){
-//            //            NSLog(@"registrationID获取成功：%@",registrationID);
-//
-//        }
-//        else{
-//            //            NSLog(@"registrationID获取失败，code：%d",resCode);
-//        }
-//    }];
-//
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+
+
+
+
+
+    [JPUSHService setupWithOption:launchOptions appKey:appKey
+                          channel:channel
+                 apsForProduction:isProduction
+            advertisingIdentifier:nil];
+
+
+
+
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        if(resCode == 0){
+            //            NSLog(@"registrationID获取成功：%@",registrationID);
+
+        }
+        else{
+            //            NSLog(@"registrationID获取失败，code：%d",resCode);
+        }
+    }];
+
     
    
     return YES;
 }
 
-//- (void)application:(UIApplication *)application
-//didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//    // rootViewController.deviceTokenValueLabel.text =
-//    // [NSString stringWithFormat:@"%@", deviceToken];
-//    // rootViewController.deviceTokenValueLabel.textColor =
-//    [UIColor colorWithRed:0.0 / 255
-//                    green:122.0 / 255
-//                     blue:255.0 / 255
-//                    alpha:1];
-//    //    NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
-//    [JPUSHService registerDeviceToken:deviceToken];
-//}
-//
-//- (void)application:(UIApplication *)application
-//didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-//    //    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
-//}
-//
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
-//- (void)application:(UIApplication *)application
-//didRegisterUserNotificationSettings:
-//(UIUserNotificationSettings *)notificationSettings {
-//}
-//
-//// Called when your app has been activated by the user selecting an action from
-//// a local notification.
-//// A nil action identifier indicates the default action.
-//// You should call the completion handler as soon as you've finished handling
-//// the action.
-//- (void)application:(UIApplication *)application
-//handleActionWithIdentifier:(NSString *)identifier
-//forLocalNotification:(UILocalNotification *)notification
-//  completionHandler:(void (^)())completionHandler {
-//}
-//
-//// Called when your app has been activated by the user selecting an action from
-//// a remote notification.
-//// A nil action identifier indicates the default action.
-//// You should call the completion handler as soon as you've finished handling
-//// the action.
-//- (void)application:(UIApplication *)application
-//handleActionWithIdentifier:(NSString *)identifier
-//forRemoteNotification:(NSDictionary *)userInfo
-//  completionHandler:(void (^)())completionHandler {
-//}
-//#endif
-//
-//- (void)application:(UIApplication *)application
-//didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//    [JPUSHService handleRemoteNotification:userInfo];
-//    //    NSLog(@"2222收到通知:%@", [self logDic:userInfo]);
-//    
-//    //[[NSNotificationCenter defaultCenter]postNotificationName:@"tongzhi" object:nil] ;
-//    
-//    
-//    // [rootViewController addNotificationCount];
-//}
-//
-//- (void)application:(UIApplication *)application
-//didReceiveRemoteNotification:(NSDictionary *)userInfo
-//fetchCompletionHandler:
-//(void (^)(UIBackgroundFetchResult))completionHandler {
-//    [JPUSHService handleRemoteNotification:userInfo];
-//    //    NSLog(@"1111收到通知:%@", [self logDic:userInfo]);
-//    // [rootViewController addNotificationCount];
-//    //[[NSNotificationCenter defaultCenter]postNotificationName:@"tongzhi" object:nil] ;
-//    completionHandler(UIBackgroundFetchResultNewData);
-//}
-//
-//- (void)application:(UIApplication *)application
-//didReceiveLocalNotification:(UILocalNotification *)notification {
-//    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
-//}
-//
-//// log NSSet with UTF8
-//// if not ,log will be \Uxxx
-//- (NSString *)logDic:(NSDictionary *)dic {
-//    if (![dic count]) {
-//        return nil;
-//    }
-//    NSString *tempStr1 =
-//    [[dic description] stringByReplacingOccurrencesOfString:@"\\u"
-//                                                 withString:@"\\U"];
-//    NSString *tempStr2 =
-//    [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-//    NSString *tempStr3 =
-//    [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
-//    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
-//    NSString *str =
-//    [NSPropertyListSerialization propertyListFromData:tempData
-//                                     mutabilityOption:NSPropertyListImmutable
-//                                               format:NULL
-//                                     errorDescription:NULL];
-//    return str;
-//}
-//
-//
-//
-//
-//
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // rootViewController.deviceTokenValueLabel.text =
+    // [NSString stringWithFormat:@"%@", deviceToken];
+    // rootViewController.deviceTokenValueLabel.textColor =
+    [UIColor colorWithRed:0.0 / 255
+                    green:122.0 / 255
+                     blue:255.0 / 255
+                    alpha:1];
+    //    NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+- (void)application:(UIApplication *)application
+didRegisterUserNotificationSettings:
+(UIUserNotificationSettings *)notificationSettings {
+}
+
+// Called when your app has been activated by the user selecting an action from
+// a local notification.
+// A nil action identifier indicates the default action.
+// You should call the completion handler as soon as you've finished handling
+// the action.
+- (void)application:(UIApplication *)application
+handleActionWithIdentifier:(NSString *)identifier
+forLocalNotification:(UILocalNotification *)notification
+  completionHandler:(void (^)())completionHandler {
+}
+
+// Called when your app has been activated by the user selecting an action from
+// a remote notification.
+// A nil action identifier indicates the default action.
+// You should call the completion handler as soon as you've finished handling
+// the action.
+- (void)application:(UIApplication *)application
+handleActionWithIdentifier:(NSString *)identifier
+forRemoteNotification:(NSDictionary *)userInfo
+  completionHandler:(void (^)())completionHandler {
+}
+#endif
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [JPUSHService handleRemoteNotification:userInfo];
+    //    NSLog(@"2222收到通知:%@", [self logDic:userInfo]);
+    
+    //[[NSNotificationCenter defaultCenter]postNotificationName:@"tongzhi" object:nil] ;
+    
+    
+    // [rootViewController addNotificationCount];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:
+(void (^)(UIBackgroundFetchResult))completionHandler {
+    [JPUSHService handleRemoteNotification:userInfo];
+    //    NSLog(@"1111收到通知:%@", [self logDic:userInfo]);
+    // [rootViewController addNotificationCount];
+    //[[NSNotificationCenter defaultCenter]postNotificationName:@"tongzhi" object:nil] ;
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application
+didReceiveLocalNotification:(UILocalNotification *)notification {
+    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
+}
+
+// log NSSet with UTF8
+// if not ,log will be \Uxxx
+- (NSString *)logDic:(NSDictionary *)dic {
+    if (![dic count]) {
+        return nil;
+    }
+    NSString *tempStr1 =
+    [[dic description] stringByReplacingOccurrencesOfString:@"\\u"
+                                                 withString:@"\\U"];
+    NSString *tempStr2 =
+    [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    NSString *tempStr3 =
+    [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *str =
+    [NSPropertyListSerialization propertyListFromData:tempData
+                                     mutabilityOption:NSPropertyListImmutable
+                                               format:NULL
+                                     errorDescription:NULL];
+    return str;
+}
+
+
+
+
+
 
 
 

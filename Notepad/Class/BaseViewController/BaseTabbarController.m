@@ -34,7 +34,7 @@
                                    kSelImgKey : @"分组1"},
                                  
                                  @{kClassKey  : @"SearchVC",
-                                   kTitleKey  : @"Add",
+                                   kTitleKey  : @"Search",
                                    kImgKey    : @"发布",
                                    kSelImgKey : @"发布"},
                                  

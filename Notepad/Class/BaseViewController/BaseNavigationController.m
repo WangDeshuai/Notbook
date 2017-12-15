@@ -17,16 +17,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//     [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"imagenav"] forBarMetrics:UIBarMetricsDefault];
-//    self.interactivePopGestureRecognizer.delegate=self;
-    self.navigationBar.barTintColor=RGB(63, 164, 62);
+
+    self.navigationBar.barTintColor=Main_Color;
     self.navigationBar.barStyle = UIBarStyleBlack;
     self.interactivePopGestureRecognizer.enabled=NO;
     self.fd_prefersNavigationBarHidden = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:@"InfoNotification" object:nil];
 }
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-//    return self.childViewControllers.count > 1;
-//}
+- (void)InfoNotificationAction:(NSNotification *)notification{
+     NSLog(@"---接收到通知---");
+    int r =(arc4random()%256);
+    int g =(arc4random()%256);
+    int b =(arc4random()%256);
+    self.navigationBar.barTintColor=RGB(r, g, b);
+   
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

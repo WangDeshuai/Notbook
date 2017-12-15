@@ -27,6 +27,7 @@
 		04EF6A211FE2A7CD0064C545 /* SGPageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF6A181FE2A7CD0064C545 /* SGPageContentView.m */; };
 		04EF6A221FE2A7CD0064C545 /* SGPageTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF6A1B1FE2A7CD0064C545 /* SGPageTitleView.m */; };
 		04EF6A231FE2A7CD0064C545 /* SGPageTitleViewConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF6A1D1FE2A7CD0064C545 /* SGPageTitleViewConfigure.m */; };
+		04FC06791FE4060F00FD26DF /* TanKuangView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FC06781FE4060F00FD26DF /* TanKuangView.m */; };
 		961559081FDA655100D65BFE /* OnePeople+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 961559031FDA655100D65BFE /* OnePeople+CoreDataClass.m */; };
 		961559091FDA655100D65BFE /* OneClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 961559051FDA655100D65BFE /* OneClass.m */; };
 		9615590A1FDA655100D65BFE /* OnePeople+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 961559061FDA655100D65BFE /* OnePeople+CoreDataProperties.m */; };
@@ -163,6 +164,8 @@
 		04EF6A1C1FE2A7CD0064C545 /* SGPageTitleViewConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPageTitleViewConfigure.h; sourceTree = "<group>"; };
 		04EF6A1D1FE2A7CD0064C545 /* SGPageTitleViewConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPageTitleViewConfigure.m; sourceTree = "<group>"; };
 		04EF6A1E1FE2A7CD0064C545 /* SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPagingView.h; sourceTree = "<group>"; };
+		04FC06771FE4060F00FD26DF /* TanKuangView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TanKuangView.h; sourceTree = "<group>"; };
+		04FC06781FE4060F00FD26DF /* TanKuangView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TanKuangView.m; sourceTree = "<group>"; };
 		961559021FDA655100D65BFE /* OnePeople+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnePeople+CoreDataProperties.h"; sourceTree = "<group>"; };
 		961559031FDA655100D65BFE /* OnePeople+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OnePeople+CoreDataClass.m"; sourceTree = "<group>"; };
 		961559041FDA655100D65BFE /* OnePeople+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnePeople+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -608,6 +611,8 @@
 		96545CEA1FC8FD400028DC9C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04FC06771FE4060F00FD26DF /* TanKuangView.h */,
+				04FC06781FE4060F00FD26DF /* TanKuangView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1005,7 +1010,7 @@
 				TargetAttributes = {
 					040AA9AF1FC2B1B900962090 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1147,6 +1152,7 @@
 				96545CEB1FC8FD400028DC9C /* AddVC.m in Sources */,
 				040AA9FA1FC2BCEB00962090 /* SearchVC.m in Sources */,
 				96E886BD1FC9563C00DDA54B /* WHC_CircleView.m in Sources */,
+				04FC06791FE4060F00FD26DF /* TanKuangView.m in Sources */,
 				96E886BC1FC9563C00DDA54B /* UIView+WHC_ViewProperty.m in Sources */,
 				968E0BB61FC915650072D7EB /* IQTextView.m in Sources */,
 				968BDE9F1FD000CE0057E8B6 /* MsgVC.m in Sources */,
@@ -1314,8 +1320,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_ENTITLEMENTS = Notepad/Notepad.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CR9DG29L3M;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ACW8B9CZ2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1329,8 +1336,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Notepad/Lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.quickBook.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colormemory.appxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8a8d6e7b-df4c-4e26-beda-08a0283b42a3";
+				PROVISIONING_PROFILE_SPECIFIER = APP_APP;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1341,8 +1350,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_ENTITLEMENTS = Notepad/Notepad.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CR9DG29L3M;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ACW8B9CZ2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1356,8 +1366,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Notepad/Lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.quickBook.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colormemory.appxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8a8d6e7b-df4c-4e26-beda-08a0283b42a3";
+				PROVISIONING_PROFILE_SPECIFIER = APP_APP;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

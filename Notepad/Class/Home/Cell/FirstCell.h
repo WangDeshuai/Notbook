@@ -14,4 +14,11 @@
 @property(nonatomic,strong)UILabel * nameLabel;
 @property(nonatomic,strong)UILabel * contentLabel;
 @property(nonatomic,strong)UILabel * timeLable;
+
+
+@property(nonatomic,strong)UILabel * dianLabel0;
+@property(nonatomic,strong)UIView * lineView0;
+
+@property(nonatomic,strong)UILabel * dianLabel1;
+@property(nonatomic,strong)UIView * lineView1;
 @end

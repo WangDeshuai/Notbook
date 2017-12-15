@@ -130,11 +130,8 @@
         return;
     }
     
-    [_dataDao insertPeopleWithName:str1 Nickname:str2 Phone:str3 Email:str4 Code:str5 Web:str6 Divide:str7 Other1:@"0" Oher2:@""];
-    SGViewController * vc = [[SGViewController alloc]init];
-    BaseNavigationController *rootController = [[BaseNavigationController alloc] initWithRootViewController:vc];
-    
-    [(DDMenuController *)[UIApplication sharedApplication].delegate.window.rootViewController setRootController:rootController animated:YES];
+    [_dataDao insertPeopleWithName:str1 Nickname:str2 Phone:str3 Email:str4 Code:str5 Web:str6 Divide:str7 Other1:_index Oher2:@""];
+    [self.navigationController popViewControllerAnimated:YES];
     
     
 }

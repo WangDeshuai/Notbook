@@ -28,7 +28,7 @@
     .heightIs(100);
     
     UILabel * namelabel =[UILabel new];
-    namelabel.text=@"Quick memory assistant";
+    namelabel.text=@"Always color memory assistant";
     namelabel.textAlignment=1;
     namelabel.alpha=.7;
     [self.view sd_addSubviews:@[namelabel]];

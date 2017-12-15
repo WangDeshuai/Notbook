@@ -22,12 +22,7 @@
 -(void)CreatStr{
     _imageview=[[UIImageView alloc]init];
     _imageview.image=[UIImage imageNamed:@"文件夹"];
-    
    
-    
-    
-
-    _imageview.backgroundColor=[UIColor clearColor];
     [self.contentView sd_addSubviews:@[_imageview]];
     
     int k =0;
@@ -66,7 +61,7 @@
     [_nameLable.layer setShadowOffset:CGSizeMake(0, 5)];
 //    _nameLable.textColor=[UIColor blackColor];
     [_imageview sd_addSubviews:@[_nameLable]];
-//    _nameLable.backgroundColor=[UIColor redColor];
+    _nameLable.backgroundColor=[UIColor redColor];
     _nameLable.sd_layout
     .leftSpaceToView(_imageview,0)
     .rightSpaceToView(_imageview,15)

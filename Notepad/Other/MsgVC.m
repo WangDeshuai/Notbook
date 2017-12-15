@@ -21,7 +21,7 @@
     [self CreatWebView];
 }
 -(void)CreatWebView{
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"LeCaiApp"];
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"TXAPP"];
     
     [bquery getObjectInBackgroundWithId:@"b9418c19ed" block:^(BmobObject *object,NSError *error)
      {

@@ -49,14 +49,46 @@
 -(void)CreatStar{
     self.layer.cornerRadius=5;
     self.clipsToBounds=YES;
-   
+     NSString * path =NSHomeDirectory();
+    NSString *imagePath = [path stringByAppendingString:@"/Documents/pic.png"];
+    UIImage *getimage2 = [UIImage imageWithContentsOfFile:imagePath];
+    
+    
+    
+    
+    _lineView0=[UIView new];
+    _lineView0.backgroundColor=[UIColor whiteColor];
+    [self.contentView sd_addSubviews:@[_lineView0]];
+    _lineView0.sd_layout
+    .leftSpaceToView(self.contentView, 44)
+    .topSpaceToView(self.contentView, 0)
+    .widthIs(1)
+    .heightIs(30);
+    
+    _dianLabel0=[UILabel new];
+    _dianLabel0.backgroundColor=[UIColor whiteColor];
+    _dianLabel0.sd_cornerRadius=@(7.5);
+    [self.contentView sd_addSubviews:@[_dianLabel0]];
+    _dianLabel0.sd_layout
+    .centerXEqualToView(_lineView0)
+    .topSpaceToView(_lineView0, 0)
+    .widthIs(15)
+    .heightIs(15);
+    
+    
+    
     _leftImage=[UIImageView new];
-    _leftImage.image=[UIImage imageNamed:@"mine_head"];
+    if (getimage2==nil) {
+         _leftImage.image=[UIImage imageNamed:@"mine_head"];
+    }else{
+        _leftImage.image=getimage2;
+    }
+   
     _leftImage.sd_cornerRadius=@(30);
     [self.contentView sd_addSubviews:@[_leftImage]];
     _leftImage.sd_layout
     .leftSpaceToView(self.contentView, 15)
-    .topSpaceToView(self.contentView, 5)
+    .topSpaceToView(_dianLabel0, 10)
     .widthIs(60)
     .heightIs(60);
     
@@ -71,7 +103,7 @@
     _nameLabel.font=[UIFont boldSystemFontOfSize:15];
     [self.contentView sd_addSubviews:@[_nameLabel]];
     _nameLabel.sd_layout
-    .topEqualToView(_leftImage)
+    .topSpaceToView(self.contentView, 15)
     .leftSpaceToView(_leftImage, 10)
     .heightIs(20);
     [_nameLabel setSingleLineAutoResizeWithMaxWidth:200];
@@ -80,7 +112,7 @@
     _contentLabel.alpha=.7;
     _contentLabel.numberOfLines=2;
     _contentLabel.textColor=[UIColor whiteColor];
-    _contentLabel.text=@"this is content tesgk sglksga lkgjd gthis is content tesgk sglksga lkgjd gthis is content tesgk sglksga lkgjd g";
+    _contentLabel.text=@"Here you can add a note to remind you of your memory";
     _contentLabel.font=[UIFont systemFontOfSize:16];
     [self.contentView sd_addSubviews:@[_contentLabel]];
     _contentLabel.sd_layout
@@ -105,7 +137,35 @@
     .heightIs(15);
     [_timeLable setSingleLineAutoResizeWithMaxWidth:200];
     
-    [self setupAutoHeightWithBottomView:_timeLable bottomMargin:20];
+    
+   
+    
+   
+    _lineView1=[UIView new];
+    _lineView1.backgroundColor=[UIColor whiteColor];
+    [self.contentView sd_addSubviews:@[_lineView1]];
+    _lineView1.sd_layout
+    .rightSpaceToView(self.contentView, 44)
+    .topSpaceToView(self.contentView, 0)
+    .widthIs(1)
+    .heightIs(30);
+    
+    
+    _dianLabel1=[UILabel new];
+    _dianLabel1.backgroundColor=[UIColor whiteColor];
+    _dianLabel1.sd_cornerRadius=@(7.5);
+    [self.contentView sd_addSubviews:@[_dianLabel1]];
+    _dianLabel1.sd_layout
+    .centerXEqualToView(_lineView1)
+    .topSpaceToView(_lineView1, 0)
+    .widthIs(15)
+    .heightIs(15);
+    
+  
+    
+    
+    
+    [self setupAutoHeightWithBottomView:_timeLable bottomMargin:30];
     
 }
 

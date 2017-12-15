@@ -145,13 +145,13 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-//        cell.backgroundColor=[UIColor redColor];
     int r =(arc4random()%256);
     int ggg =(arc4random()%256);
     int b =(arc4random()%256);
-    cell.backgroundColor=RGB(r, ggg, b);;
     ClassData * p =_dataArray[indexPath.row];
     cell.nameLable.text=p.name;
+    
+    cell.nameLable.backgroundColor=RGB(r, ggg, b);
     return cell;
 
 }

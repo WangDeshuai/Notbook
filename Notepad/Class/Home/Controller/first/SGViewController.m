@@ -11,6 +11,8 @@
 #import "SGPagingView.h"
 #import "SecondVC.h"
 #import "AddOneVC.h"
+#import "TanKuangView.h"
+#import "AddVC.h"
 @interface SGViewController ()<SGPageTitleViewDelegate, SGPageContentViewDelegate>
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
@@ -27,15 +29,36 @@
     // Do any additional setup after loading the view.
     self.title=@"Home";
     self.backHomeBtn.hidden=YES;
-//    self.rightButton.hidden=NO;
-//    [self.rightButton setTitle:@"颜色" forState:0];
-//    [self.rightButton addTarget:self action:@selector(rightClink) forControlEvents:UIControlEventTouchUpInside];
-//    
+    self.rightButton.hidden=NO;
+    [self.rightButton setImage:[UIImage imageNamed:@"public"] forState:0];
+    self.rightButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
+    [self.rightButton addTarget:self action:@selector(rightClink) forControlEvents:UIControlEventTouchUpInside];
+//
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSelectedIndex:) name:@"changeSelectedIndex" object:nil];
     [self setupPageView];
 }
 
-
+-(void)rightClink{
+    TanKuangView * view =[[TanKuangView alloc]initWithArray:@[@"Content memory",@"Sequential memory"]];
+     __weak typeof(view)  sf = view;
+    view.Block=^(NSInteger tagg){
+        if (tagg==0) {
+            
+            AddOneVC * vc =[AddOneVC new];
+            vc.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            AddVC * vc =[AddVC new];
+            vc.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        [sf dissmiss];
+    
+    };
+    [view show];
+//    AddOneVC * vc =[AddOneVC new];
+//    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 - (void)changeSelectedIndex:(NSNotification *)noti {
@@ -50,7 +73,7 @@
         pageTitleViewY = 88;
     }
     
-    NSArray *titleArr = @[@"My memory", @"Class memory"];
+    NSArray *titleArr = @[@"Content memory", @"Sequential memory"];
     SGPageTitleViewConfigure *configure = [SGPageTitleViewConfigure pageTitleViewConfigure];
     configure.indicatorAdditionalWidth = 10;
     configure.titleSelectedColor=Main_Color;

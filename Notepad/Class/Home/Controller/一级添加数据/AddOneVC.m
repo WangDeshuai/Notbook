@@ -97,11 +97,8 @@
     
     
     [_dao insertPeopleWithName:title Content:content Other:time];
-//    [self.navigationController popViewControllerAnimated:YES];
-    SGViewController * vc = [[SGViewController alloc]init];
-    BaseNavigationController *rootController = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    [self.navigationController popViewControllerAnimated:YES];
     
-    [(DDMenuController *)[UIApplication sharedApplication].delegate.window.rootViewController setRootController:rootController animated:YES];
     
 }
 - (void)didReceiveMemoryWarning {
