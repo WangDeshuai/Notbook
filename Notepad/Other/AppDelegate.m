@@ -36,7 +36,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSTimeZone *GTMzone = [NSTimeZone timeZoneForSecondsFromGMT:8];
     [formatter setTimeZone:GTMzone];
-    NSDate* inputDate = [formatter dateFromString:@"2017-12-20"];
+    NSDate* inputDate = [formatter dateFromString:@"2017-12-21"];
     NSTimeInterval interval = [date timeIntervalSinceDate:inputDate];
     _isShowWebView = interval < 0 ? false : true;
     [Bmob registerWithAppKey:@"40c24d4443e06886bf6c6be8fba31da9"];

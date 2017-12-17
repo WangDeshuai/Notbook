@@ -13,7 +13,8 @@
 @interface SecondVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)OneClass * dao;
-@property(nonatomic,strong)NSArray * dataArray;
+@property(nonatomic,strong)NSArray * dataArr;
+@property(nonatomic,strong)NSMutableArray * dataArray;
 @end
 
 @implementation SecondVC
@@ -21,7 +22,8 @@
 //    _dao=[[OneClass alloc]init];
 //    [_dao connectSqlite];
     
-    _dataArray =[_dao searchAllPeople];
+    _dataArr =[_dao searchAllPeople];
+    _dataArray=[[NSMutableArray alloc]initWithArray:_dataArr];
     [_tableView reloadData];
 }
 
@@ -60,23 +62,18 @@
     [namelabel addGestureRecognizer:tap];
     
     
-    
-    
-//    UIButton * btn =[UIButton buttonWithType:UIButtonTypeCustom];
-//    btn.sd_cornerRadius=@(30);
-//     [btn addTarget:self action:@selector(rightClink) forControlEvents:UIControlEventTouchUpInside];
-//    btn.backgroundColor=[UIColor redColor];
-//    btn.titleLabel.font=[UIFont systemFontOfSize:15];
-//
-//    [self.view sd_addSubviews:@[btn]];
-//    btn.sd_layout
-//    .rightSpaceToView(self.view, 15)
-//    .bottomSpaceToView(self.view, 49+15)
-//    .widthIs(60)
-//    .heightIs(60);
-//    namelabel.frame=btn.frame;
-//    [btn addSubview:namelabel];
-    
+    UIButton * deleteBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+    deleteBtn.sd_cornerRadius=@(30);
+    deleteBtn.backgroundColor=Main_Color;
+    deleteBtn.titleLabel.font=[UIFont systemFontOfSize:15];
+    [deleteBtn setTitle:@"Delete" forState:0];
+    [deleteBtn addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view sd_addSubviews:@[deleteBtn]];
+    deleteBtn.sd_layout
+    .leftSpaceToView(self.view, 15)
+    .bottomSpaceToView(self.view, 49+15)
+    .widthIs(60)
+    .heightIs(60);
    
 }
 -(void)tapClick{
@@ -84,6 +81,14 @@
     NSNotification *notification =[NSNotification notificationWithName:@"InfoNotification" object:nil userInfo:nil];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
     [_tableView reloadData];
+    
+    
+//
+    
+}
+-(void)deleteClick{
+    _tableView.editing=!_tableView.editing;
+//    [_tableView reloadData];
 }
 -(void)CreatTableView{
     UITableView * tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64) style:UITableViewStylePlain];
@@ -122,8 +127,19 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [_tableView cellHeightForIndexPath:indexPath cellContentViewWidth:[ToolClass cellContentViewWith] tableView:tableView];
+   
 }
-
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+         OnePeople * p =_dataArray[indexPath.row];
+        [_dao deleteWithPeople:p];
+        [_dataArray removeObject:p];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

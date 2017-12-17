@@ -73,7 +73,17 @@ static const CGFloat ratio =0.6;
     
     //头像
     UIButton * headBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [headBtn setBackgroundImage:[UIImage imageNamed:@"mine_head"] forState:0];
+  
+    NSString * path =NSHomeDirectory();
+    NSString *imagePath = [path stringByAppendingString:@"/Documents/pic.png"];
+    UIImage *getimage2 = [UIImage imageWithContentsOfFile:imagePath];
+    if (getimage2==nil) {
+         [headBtn setBackgroundImage:[UIImage imageNamed:@"mine_head"] forState:0];
+    }else{
+         [headBtn setBackgroundImage:getimage2 forState:0];
+    }
+    
+   
     [headBtn addTarget:self action:@selector(headBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     headBtn.sd_cornerRadius=@(40);
     [headerView sd_addSubviews:@[headBtn]];

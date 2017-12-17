@@ -17,6 +17,15 @@
         self.clipsToBounds=YES;
         self.backgroundColor=[UIColor whiteColor];
         self.frame=CGRectMake(ScreenWidth-160-30,64, 160, 100);
+        UIView * lineView =[UIView new];
+        lineView.backgroundColor=[UIColor blackColor];
+        [self sd_addSubviews:@[lineView]];
+        lineView.sd_layout
+        .leftSpaceToView(self, 0)
+        .rightSpaceToView(self, 0)
+        .topSpaceToView(self, 45)
+        .heightIs(1);
+        
         for (int i =0; i<array.count; i++) {
             UIButton * btn =[UIButton buttonWithType:UIButtonTypeCustom];
             [self sd_addSubviews:@[btn]];
